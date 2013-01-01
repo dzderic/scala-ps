@@ -2,10 +2,14 @@ package com.dzderic.ps
 
 import java.nio.file.{Files, Paths}
 import java.nio.file.attribute.PosixFileAttributes
+import java.util.Date
 
 class LinuxProcess(val pid: Long) extends Process {
   // Path pointing to /proc/<pid>
   private val procPath = Paths.get(LinuxProcessFactory.PROC_MOUNT, pid.toString)
+
+  // Get the start time of the process from the mtime of the /proc/<pid> directory
+  lazy val startTime = new Date(Files.getLastModifiedTime(procPath).toMillis)
 
   // Get the process user/group from the /proc/<pid> directory permissions
   lazy private val attributes = {

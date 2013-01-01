@@ -1,11 +1,12 @@
 package com.dzderic.ps
 
 import java.nio.file.attribute.{UserPrincipal, GroupPrincipal}
+import java.util.Date
 
 trait Process {
   val pid: Long                    // the process id
 
-  val runTime: Long                // time (in milliseconds) that the process has been running for
+  val startTime: Date              // the starting time of the process
 
   val user: UserPrincipal          // the user running the process
   val group: GroupPrincipal        // the group associated with the process
