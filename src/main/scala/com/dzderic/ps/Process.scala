@@ -8,7 +8,7 @@ trait Process {
   val user: UserPrincipal
   val group: GroupPrincipal
 
-  val exe: String
   val cmdline: String
-  val cwd: String
+  val executable: Option[String]
+  val cwd: Option[String]
 }
